@@ -11,7 +11,7 @@ services:
         networks:
             - clarusnet
     myapp:
-        image: callahanclarus/bookstore-api:latest
+        image: maxim/bookstore-api:latest
         restart: always
         depends_on:
             - database

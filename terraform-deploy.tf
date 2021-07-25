@@ -13,8 +13,7 @@ provider "aws" {
 resource "aws_instance" "tf-docker-ec2" {
   ami             = "ami-09d95fab7fff3776c"
   instance_type   = "t2.micro"
-  key_name        = "northvirginia"
-  //  Write your pem file name
+  key_name        = "Second"
   security_groups = ["docker-sec-gr-202"]
   tags = {
     Name = "Bookstore-Web-Server"
@@ -30,14 +29,14 @@ resource "aws_instance" "tf-docker-ec2" {
           -o /usr/local/bin/docker-compose
           chmod +x /usr/local/bin/docker-compose
           mkdir -p /home/ec2-user/bookstore-api
-          TOKEN="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-          FOLDER="https://$TOKEN@raw.githubusercontent.com/clarusway/cw-workshop/dev/devops/projects/202-dockerization-bookstore-api-on-python-flask-mysql/"
+          TOKEN="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"
+          FOLDER="https://$TOKEN@raw.githubusercontent.com/maximkim-create/         203-dockerization-bookstore-api-on-python-flask-mysql"
           curl -s --create-dirs -o "/home/ec2-user/bookstore-api/app.py" -L "$FOLDER"bookstore-api.py
           curl -s --create-dirs -o "/home/ec2-user/bookstore-api/requirements.txt" -L "$FOLDER"requirements.txt
           curl -s --create-dirs -o "/home/ec2-user/bookstore-api/Dockerfile" -L "$FOLDER"Dockerfile
           curl -s --create-dirs -o "/home/ec2-user/bookstore-api/docker-compose.yml" -L "$FOLDER"docker-compose.yml
           cd /home/ec2-user/bookstore-api
-          docker build -t callahanclarus/bookstore-api:latest .
+          docker build -t maxim/bookstore-api:latest .
           docker-compose up -d
           EOF
 }
